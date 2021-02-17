@@ -4,6 +4,7 @@ const layouts = require('express-ejs-layouts');
 const session = require('express-session');
 const passport = require('./config/ppConfig'); //
 const flash = require('connect-flash');
+const axios = require('axios')
 
 
 const app = express();
@@ -48,15 +49,39 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
-  res.render('index');
-});
+  res.send('sdnfls')
+  })
+
 
 //Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
 //Option for timer - save to queue or upload a finished 'flare'
-app.get('/spark', (req, res) => {
-  res.render('spark'//, { sparkObj }
-  )
-})
+app.get('/spark', async (req, res) => {
+  const apiKeyHarv = process.env.Api_KeyHarv
+  const apiKeyRijks = process.env.Api_KeyRijks
+  const harvardUrl = `https://api.harvardartmuseums.org/image/?apikey=${apiKeyHarv}`
+  const rijksUrl =   `https://www.rijksmuseum.nl/api/en/collection/?key=${apiKeyRijks}`
+  const harvardResponse = await axios.get(harvardUrl)
+  const rijksResponse = await axios.get(rijksUrl)
+
+  const artDataHarv = harvardResponse.data.records
+  const artDataRijks = rijksResponse.data.artObjects
+  
+
+  const artArray = [] 
+  for(let i = 0; i < artDataHarv.length; i++) { 
+    artArray.push(artDataHarv[i].baseimageurl) 
+    
+  }  
+  for(let i = 0; i < artDataRijks; i++) {
+    artArray.push(artDataRijks[i].webImage.url)
+  }
+  let rand = Math.floor(Math.random()* artArray.length) 
+  let randomImg = artArray[rand]
+  
+  res.render('spark', { randomImg })
+  })
+
+
 //Usues cloudinary for uploads
 app.get('/photoupload', (req, res) => {
   res.render('photoupload'//, { cloudinary }
