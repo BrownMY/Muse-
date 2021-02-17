@@ -46,13 +46,32 @@ app.use((req, res, next) => {
 // Controllers
 app.use('/auth', require('./controllers/auth'));
 
+//Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
   res.render('index');
 });
 
+//Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
+//Option for timer - save to queue or upload a finished 'flare'
+app.get('/spark', (req, res) => {
+  res.render('spark'//, { sparkObj }
+  )
+})
+//Usues cloudinary for uploads
+app.get('/photoupload', (req, res) => {
+  res.render('photoupload'//, { cloudinary }
+  )
+})
+
+app.get('/queue', (req, res) => {
+  res.render('queue'//, {}
+  )
+})
+
+//Flare pages (user profiles)
 app.get('/profile', isLoggedIn, (req, res) => {
-  const { id, name, email } = req.user.get(); 
-  res.render('profile', { id, name, email });
+  const { name, username } = req.user.get(); 
+  res.render('profile', { name, username });
 });
 
 const PORT = process.env.PORT || 3000;
@@ -63,16 +82,5 @@ const server = app.listen(PORT, () => {
 module.exports = server;
 
 
-
-// espn.com
-
-// basketball/college
-// basketball/nba
-// basketball/gleague
-// basketball/europe
-
-// football
-// baseball
-// ...
 
 

@@ -1,7 +1,9 @@
 ***USER STORIES***
 As a User I want an app to help me feel inspired and cure my artist block fast.
 
-generate random images, 3 colors and a word. Optional timer to do a painting incorporated all three into a new piece. Inspiration set is called 'Spark'
+Generate random images, 3 colors and a word. Optional timer to do a quick painting incorporating all three into a new piece. Inspiration set is called 'Spark'.
+
+
 
 -Wire Frame routes
 -write out simple routes for each page-pseudo code them
@@ -11,10 +13,3 @@ generate random images, 3 colors and a word. Optional timer to do a painting inc
 -Fetch APIs that display on page, have a save option to add to user queue and save in queuedb
 -Add post route for photo uploads with cloudinary add to a db for finished pieces
 -
-
-
-
-https://www.figma.com/file/3rJfVOaioZnZqtZJEA9JAC/MUSE?node-id=6%3A145
-
-
-https://www.figma.com/file/3rJfVOaioZnZqtZJEA9JAC/MUSE?node-id=6%3A145

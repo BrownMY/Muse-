@@ -12,6 +12,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.belongsToMany(models.sparkqueue, {through: 'usersSparksQueues'})
+      models.user.hasMany(models.flare)
+    
+      
     }
   };
   user.init({
@@ -21,6 +25,15 @@ module.exports = (sequelize, DataTypes) => {
        len: {
         args: [1,99],
         msg: 'Name must be between 1 and 99 characters'
+       }
+      }
+    },
+    username: {
+      type: DataTypes.STRING,
+      validate: {
+       len: {
+        args: [1,99],
+        msg: 'Username must be between 1 and 99 characters'
        }
       }
     },
@@ -70,5 +83,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return user; // above here
 };
-
-
