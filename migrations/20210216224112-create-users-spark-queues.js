@@ -11,7 +11,7 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER
       },
-      sparkQueueId: {
+      sparkqueueId: {
         type: Sequelize.INTEGER
       },
       createdAt: {

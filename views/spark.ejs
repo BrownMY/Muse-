@@ -4,52 +4,58 @@
 <% let title; %>
 <% let artist; %>
 <% let url; %>
-
+<% console.log("This is the current user:", currentUser)%>
     <% if (randomImg.copyright === 'President and Fellows of Harvard College') { %>
         
        <img src="<%= randomImg.baseimageurl %>" >  
         <p class ="artistP">Artist: Unknown</p> 
-        <% let artist = 'Unknown' %>
-        <% let url = randomImg.baseimageurl %>
-
+        <%  artist = 'Unknown' %>
+        <%  url = randomImg.baseimageurl %>
         <% if (randomImg.caption === null){ %>
-        <% let title = 'Untitled' %>
-        
-        <p class="titleP">Title: Untitled</p>
 
-       <% } else { %>
-        <% let title = randomImg.caption %>
-        
-        <p>Title: <%= randomImg.caption %>
+            <% title = 'Untitled' %>
+            <p class="titleP">Title: Untitled</p>
+
+        <% } else { %>
+
+            <% title = randomImg.caption %>
+            <p>Title: <%= randomImg.caption %></p>
             
-            <% } %>
+        <% } %>
 
       <% } else { %>
+
+        <% title = randomImg.title %>
+        <%console.log("This is the title:", title) %>
+        <% artist = randomImg.principalOrFirstMaker %>
+        <% url = randomImg.webImage.url %>
         <img src="<%= randomImg.webImage.url %>">
         <p class="artistP">Artist: <%=randomImg.principalOrFirstMaker%></p>
         <p class="titleP">Title: <%=randomImg.title %></p>
-        <% let title = randomImg.title %>
-        <% let artist = randomImg.principalOrFirstMaker %>
-        <% let url = randomImg.webImage.url %>
         
       <% } %>
     
 </p>
 
-<% let color = Math.floor(Math.random()*255) %>
-<% let color2 = Math.floor(Math.random()*255) %>
-<% let color3 = Math.floor(Math.random()*255) %>
+<% for (i = 0; i < 9; i++) { %>
+    <% color = Math.floor(Math.random()*255) %>
+    
+    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
+    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
+    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
+    <% console.log(color) %>
+    <% } %>
+    
+    
 
-<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
-<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
-<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
 
 <div class='QueueAdd'>
     <form method="POST"  action="/queue">
-        <input hidden type="text" name="title" value="<%= title %>">
-        <input hidden type="text" name="artist" value="<%= artist %>">
-        <input hidden type="text" name="url" value="<%= url %>">
-        <input type="hidden"  name="username" value="<%= req.user.id %>">
+        <input type="hidden" name="title" value="<%= title %>">
+        <input type="hidden" name="artist" value="<%= artist %>">
+        <input type="hidden" name="url" value="<%= url %>">
+        <input type="hidden" name="id" value="<%= currentUser.dataValues.id %>">
+        
         <button type="Submit">Add to Queue</button>
     </form>
 </div>

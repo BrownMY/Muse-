@@ -1,0 +1,8 @@
+<% sparkQueueResponse.forEach(function(sparkqueue){ %>
+    <% if (sparkqueue.dataValues.url !== '') { %>
+        <img src="<%= sparkqueue.dataValues.url %>">
+        <p>Title: <%= sparkqueue.dataValues.title%></p>
+        <p>Artist: <%= sparkqueue.dataValues.artist %></p>
+    <% } %>
+ <% }) %>
+

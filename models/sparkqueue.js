@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.sparkqueue.belongsToMany(models.user, {through: 'usersSparksQueues'})
+      models.sparkqueue.belongsToMany(models.user, {through: 'usersSparkQueues'})
     }
   };
   sparkqueue.init({

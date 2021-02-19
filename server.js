@@ -50,13 +50,14 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
+  console.log(req.user.id)
   res.render('index')
   })
 
 
 //Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
 //Option for timer - save to queue or upload a finished 'flare'
-app.get('/spark', async (req, res) => {
+app.get('/spark', isLoggedIn, async (req, res) => {
   try {
   const apiKeyHarv = process.env.Api_KeyHarv
   const apiKeyRijks = process.env.Api_KeyRijks
@@ -87,23 +88,37 @@ app.get('/spark', async (req, res) => {
   }
 })
 
-app.post('/queue', (req, res) => {
-  db.sparkqueue.create({
-    title: req.body.title,
-    artist: req.body.artist,
-    url: req.body.url
-
-  }).then(function(createQueue) {
-    res.redirect('/queue', { createQueue })
-  })
-})
-
-app.get('/queue', (req, res) => {
+app.get('/queue', isLoggedIn, (req, res) => {
   req.user.getSparkqueues().then(function(sparkQueueResponse) {
-    console.log(sparkQueueResponse)
+    //clconsole.log(sparkQueueResponse)
     res.render('queue', { sparkQueueResponse })
   })
 })
+
+app.post('/queue', isLoggedIn, async(req, res) => {
+  console.log(req.body)
+  try {
+    const createQueue = await
+    db.sparkqueue.create({
+      title: req.body.title,
+      artist: req.body.artist,
+      url: req.body.url,
+      //id: req.body.id
+    })
+
+    const user = await 
+      db.user.findOne({where: {
+        id: req.user.id}, include: [db.sparkqueue]
+      })
+      user.addSparkqueue(createQueue)
+      res.redirect('/queue')
+  } catch(e) {
+    console.log(e)
+  }
+})
+  
+
+
 
 //Usues cloudinary for uploads
 app.get('/photoupload', (req, res) => {

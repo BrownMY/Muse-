@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   usersSparkQueues.init({
     userId: DataTypes.INTEGER,
-    sparkQueueId: DataTypes.INTEGER
+    sparkqueueId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'usersSparkQueues',
