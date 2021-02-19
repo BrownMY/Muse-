@@ -4,5 +4,13 @@
         <p>Title: <%= sparkqueue.dataValues.title%></p>
         <p>Artist: <%= sparkqueue.dataValues.artist %></p>
     <% } %>
- <% }) %>
+ 
 
+ <div class='SparkAdd'>
+    <form method="POST"  action="/queue/newspark">
+   
+       
+        <button type="Submit">Spark</button>
+    </form>
+</div>
+ <% }) %>

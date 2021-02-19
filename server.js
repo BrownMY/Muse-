@@ -82,7 +82,15 @@ app.get('/spark', isLoggedIn, async (req, res) => {
   let rand = Math.floor(Math.random()* artArray.length) 
   let randomImg = artArray[rand]
   
-  res.render('spark', { randomImg })
+  const colorsArray = []                                             
+   for (i = 0; i < 9; i++) { 
+    color = Math.floor(Math.random()*255) 
+    colorsArray.push(color)
+     console.log(color) 
+ } 
+
+  //NEEDS TIMER OPTION
+  res.render('spark', { randomImg, colorsArray })
   } catch(e) {
     console.log(e.message)
   }
@@ -90,7 +98,11 @@ app.get('/spark', isLoggedIn, async (req, res) => {
 
 app.get('/queue', isLoggedIn, (req, res) => {
   req.user.getSparkqueues().then(function(sparkQueueResponse) {
-    //clconsole.log(sparkQueueResponse)
+    //title
+    //artist
+    //url
+    //spark button
+      //pull up title, artist, url and 3 new colors
     res.render('queue', { sparkQueueResponse })
   })
 })
@@ -117,21 +129,37 @@ app.post('/queue', isLoggedIn, async(req, res) => {
   }
 })
   
+app.post('/queue/newspark', (req, res) => {
+  //displays title
+  //artist
+  //url
+  //3 new colors
+  //on save button - saves art, title, url, user, color1, color2, color3
+  //sends to photo upload,
+  res.redirect('newspark')
+})
 
+app.get('/queue/newspark', (req, res) => {
+  const { title, artist, url } = req.body
+  res.render('newspark', { title, artist, url})
+})
 
 
 //Usues cloudinary for uploads
 app.get('/photoupload', (req, res) => {
-  res.render('photoupload'//, { cloudinary }
-  )
+  res.render('photoupload')
+  //uploads photo. adds to flare model
 })
 
-app.get('/queue', (req, res) => {
-  res.render('queue'//, {}
-  )
-})
+// app.get('/queue', (req, res) => {
+//   res.render('queue'//, {}
+//   )
+// })
+
+
 
 //Flare pages (user profiles)
+//displays title, artist, url, photo upload, user name,color1, color2, color3, flaretitle 
 app.get('/profile', isLoggedIn, (req, res) => {
   const { name, username } = req.user.get(); 
   res.render('profile', { name, username });

@@ -36,26 +36,21 @@
       <% } %>
     
 </p>
-
-<% for (i = 0; i < 9; i++) { %>
-    <% color = Math.floor(Math.random()*255) %>
     
-    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
-    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
-    <div style="background-color:rgb('<%= color %>, <%= color %>, <%= color %>')"></div>
-    <% console.log(color) %>
-    <% } %>
+    <div style="background-color:rgb(<%= colorsArray[0] %>, <%= colorsArray[1] %>, <%= colorsArray[2] %>)"></div>
+    <div style="background-color:rgb(<%= colorsArray[3] %>, <%= colorsArray[4] %>, <%= colorsArray[5] %>)"></div>
+    <div style="background-color:rgb(<%= colorsArray[6] %>, <%= colorsArray[7] %>, <%= colorsArray[8] %>)"></div>
+   
+    <% console.log(colorsArray) %>
+   
     
-    
-
-
 <div class='QueueAdd'>
     <form method="POST"  action="/queue">
         <input type="hidden" name="title" value="<%= title %>">
         <input type="hidden" name="artist" value="<%= artist %>">
         <input type="hidden" name="url" value="<%= url %>">
         <input type="hidden" name="id" value="<%= currentUser.dataValues.id %>">
-        
+     
         <button type="Submit">Add to Queue</button>
     </form>
 </div>
