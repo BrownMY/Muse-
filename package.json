@@ -1,7 +1,7 @@
 {
-  "name": "express-authentication",
+  "name": "MUSE",
   "version": "1.0.0",
-  "description": "This is express authentication",
+  "description": "",
   "main": "server.js",
   "directories": {
     "test": "test"
@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/romebell/express-authentication.git"
   },
-  "author": "Rome Bell",
+  "author": "Mocha Brown",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/romebell/express-authentication/issues"

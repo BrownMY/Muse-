@@ -13,6 +13,7 @@ app.set('view engine', 'ejs');
 // Session 
 const SECRET_SESSION = process.env.SECRET_SESSION;
 const isLoggedIn = require('./middleware/isLoggedIn');
+const db = require('./models');
 
 // MIDDLEWARE
 app.use(require('morgan')('dev'));
@@ -49,38 +50,60 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
-  res.send('sdnfls')
+  res.render('index')
   })
 
 
 //Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
 //Option for timer - save to queue or upload a finished 'flare'
 app.get('/spark', async (req, res) => {
+  try {
   const apiKeyHarv = process.env.Api_KeyHarv
   const apiKeyRijks = process.env.Api_KeyRijks
   const harvardUrl = `https://api.harvardartmuseums.org/image/?apikey=${apiKeyHarv}`
   const rijksUrl =   `https://www.rijksmuseum.nl/api/en/collection/?key=${apiKeyRijks}`
+  
   const harvardResponse = await axios.get(harvardUrl)
   const rijksResponse = await axios.get(rijksUrl)
-
-  const artDataHarv = harvardResponse.data.records
-  const artDataRijks = rijksResponse.data.artObjects
+ 
+  const harvArtData = harvardResponse.data.records
+  const rijksArtData = rijksResponse.data.artObjects
+ 
   
-
+  
   const artArray = [] 
-  for(let i = 0; i < artDataHarv.length; i++) { 
-    artArray.push(artDataHarv[i].baseimageurl) 
-    
+  for(let i = 0; i < harvArtData.length; i++) { 
+    artArray.push(harvArtData[i])   
   }  
-  for(let i = 0; i < artDataRijks; i++) {
-    artArray.push(artDataRijks[i].webImage.url)
+  for(let i = 0; i < rijksArtData.length; i++) {
+    artArray.push(rijksArtData[i])
   }
   let rand = Math.floor(Math.random()* artArray.length) 
   let randomImg = artArray[rand]
   
   res.render('spark', { randomImg })
-  })
+  } catch(e) {
+    console.log(e.message)
+  }
+})
 
+app.post('/queue', (req, res) => {
+  db.sparkqueue.create({
+    title: req.body.title,
+    artist: req.body.artist,
+    url: req.body.url
+
+  }).then(function(createQueue) {
+    res.redirect('/queue', { createQueue })
+  })
+})
+
+app.get('/queue', (req, res) => {
+  req.user.getSparkqueues().then(function(sparkQueueResponse) {
+    console.log(sparkQueueResponse)
+    res.render('queue', { sparkQueueResponse })
+  })
+})
 
 //Usues cloudinary for uploads
 app.get('/photoupload', (req, res) => {

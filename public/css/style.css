@@ -1,9 +1,43 @@
-nav ul li {
-  text-decoration: none;
+
+* {
+box-sizing: border-box;
+background-color: #8c2e46;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #8c2e46;
+}
+div {
+
+  height: 50px;
+  width: 50px;
+
+}
+
+li {
   display: inline-block;
-  margin-right: .3em;
+  position: absolute;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: none;
+  right: 00px;
+  color: aliceblue;
+}
+
+a {
+  text-decoration: none;
 }
 
 h1 {
-  color: chartreuse;
+  color: #e6bac6;
+}
+
+img {
+  max-width: 800px;
+  max-height: 700px;
+
 }

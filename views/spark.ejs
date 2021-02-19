@@ -1,5 +1,56 @@
 <p>Spark</p>
+<main>
 <p class='SparkImg'>
+<% let title; %>
+<% let artist; %>
+<% let url; %>
 
-    <img src="<%= randomImg %>" > 
+    <% if (randomImg.copyright === 'President and Fellows of Harvard College') { %>
+        
+       <img src="<%= randomImg.baseimageurl %>" >  
+        <p class ="artistP">Artist: Unknown</p> 
+        <% let artist = 'Unknown' %>
+        <% let url = randomImg.baseimageurl %>
+
+        <% if (randomImg.caption === null){ %>
+        <% let title = 'Untitled' %>
+        
+        <p class="titleP">Title: Untitled</p>
+
+       <% } else { %>
+        <% let title = randomImg.caption %>
+        
+        <p>Title: <%= randomImg.caption %>
+            
+            <% } %>
+
+      <% } else { %>
+        <img src="<%= randomImg.webImage.url %>">
+        <p class="artistP">Artist: <%=randomImg.principalOrFirstMaker%></p>
+        <p class="titleP">Title: <%=randomImg.title %></p>
+        <% let title = randomImg.title %>
+        <% let artist = randomImg.principalOrFirstMaker %>
+        <% let url = randomImg.webImage.url %>
+        
+      <% } %>
+    
 </p>
+
+<% let color = Math.floor(Math.random()*255) %>
+<% let color2 = Math.floor(Math.random()*255) %>
+<% let color3 = Math.floor(Math.random()*255) %>
+
+<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
+<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
+<div style="background-color:rgb(<%= color %>, <%= color2 %>, <%= color3%>)"></div>
+
+<div class='QueueAdd'>
+    <form method="POST"  action="/queue">
+        <input hidden type="text" name="title" value="<%= title %>">
+        <input hidden type="text" name="artist" value="<%= artist %>">
+        <input hidden type="text" name="url" value="<%= url %>">
+        <input type="hidden"  name="username" value="<%= req.user.id %>">
+        <button type="Submit">Add to Queue</button>
+    </form>
+</div>
+</main>
