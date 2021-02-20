@@ -130,6 +130,9 @@ app.post('/queue', isLoggedIn, async(req, res) => {
 })
   
 app.post('/queue/newspark', (req, res) => {
+  // db.sparkqueue.findOne({where: {
+  //   id: req.sparkqueue.id}, include: [db.sparkqueue]
+  //})
   //displays title
   //artist
   //url
@@ -140,8 +143,9 @@ app.post('/queue/newspark', (req, res) => {
 })
 
 app.get('/queue/newspark', (req, res) => {
-  const { title, artist, url } = req.body
-  res.render('newspark', { title, artist, url})
+  //const { title, artist, url } = req.body
+  res.render('newspark', //{ title, artist, url}
+  )
 })
 
 
