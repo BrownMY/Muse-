@@ -1,13 +1,13 @@
 <% sparkQueueResponse.forEach(function(sparkqueue){ %>
     <% if (sparkqueue.dataValues.url !== '') { %>
         <img src="<%= sparkqueue.dataValues.url %>">
-        <p>Title: <%= sparkqueue.dataValues.title%></p>
-        <p>Artist: <%= sparkqueue.dataValues.artist %></p>
+        <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
+        <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
     <% } %>
  
 
  <div class='SparkAdd'>
-    <form method="POST"  action="/queue/newspark">
+    <form method="GET"  action="/queue/newspark/<%= sparkqueue.dataValues.id %>">
         
        
         <button type="Submit">Spark</button>

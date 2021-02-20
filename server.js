@@ -112,14 +112,14 @@ app.get('/queue', isLoggedIn, (req, res) => {
 })
 
 app.post('/queue', isLoggedIn, async(req, res) => {
-  console.log(req.body)
+
   try {
     const createQueue = await
     db.sparkqueue.create({
       title: req.body.title,
       artist: req.body.artist,
       url: req.body.url,
-      //id: req.body.id
+      
     })
 
     const user = await 
@@ -133,29 +133,36 @@ app.post('/queue', isLoggedIn, async(req, res) => {
   }
 })
   
-app.post('/queue/newspark', isLoggedIn, (req, res) => {
-  // db.sparkqueue.findOne({where: {
-  //   id: req.sparkqueue.id}, include: [db.sparkqueue]
-  //})
-  //displays title
-  //artist
-  //url
-  //3 new colors
-  //on save button - saves art, title, url, user, color1, color2, color3
-  //sends to photo upload,
-  res.redirect('newspark')
-})
+// app.get('/queue/newspark/:id', isLoggedIn, (req, res) => {
+//   // db.sparkqueue.findOne({where: {
+//   //   id: req.sparkqueue.id}, include: [db.sparkqueue]
+//   //})
+//   //displays title
+//   //artist
+//   //url
+//   //3 new colors
+//   //on save button - saves art, title, url, user, color1, color2, color3
+//   //sends to photo upload,
+//   res.redirect('newspark')
+// })
 
-app.get('/queue/newspark', isLoggedIn, (req, res) => {
-  //const { title, artist, url } = req.body
-
-  const colorsArray = []                                             
-   for (i = 0; i < 9; i++) { 
-    color = Math.floor(Math.random()*255) 
+///NEED PARAM ROUTE newspark/:id
+app.get('/queue/newspark/:id', isLoggedIn, async(req, res) => {
+  try {
+    const numId = req.params.id 
+    let keyObject = await db.sparkqueue.findAll({where: {id: numId}})
+    
+    const colorsArray =[]                                             
+    for (i = 0; i < 9; i++) { 
+    let color = Math.floor(Math.random()*255) 
     colorsArray.push(color)
-     console.log(color) 
- } 
-  res.render('newspark', { colorsArray })
+    }
+    keyObject.colors = colorsArray
+    //console.log(keyObject[0].get().url)
+    res.render(`newspark/idx`, { keyObject })
+  } catch(e) {
+    console.log(e)
+  }
 })
 
 

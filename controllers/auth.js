@@ -55,7 +55,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/spark',
+  successRedirect: '/',
   failureRedirect: '/auth/login',
   successFlash: 'Welcome back ...',
   failureFlash: 'Either email or password is incorrect' 
