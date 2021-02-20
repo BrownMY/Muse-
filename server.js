@@ -5,7 +5,9 @@ const session = require('express-session');
 const passport = require('./config/ppConfig'); //
 const flash = require('connect-flash');
 const axios = require('axios')
-
+const multer = require('multer');
+const upload = multer({ dest: './uploads/' });
+const cloudinary = require('cloudinary');
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -20,6 +22,8 @@ app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
 app.use(layouts);
+
+
 
 // Session Middleware
 
@@ -50,7 +54,7 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
-  console.log(req.user.id)
+
   res.render('index')
   })
 
@@ -62,7 +66,7 @@ app.get('/spark', isLoggedIn, async (req, res) => {
   const apiKeyHarv = process.env.Api_KeyHarv
   const apiKeyRijks = process.env.Api_KeyRijks
   const harvardUrl = `https://api.harvardartmuseums.org/image/?apikey=${apiKeyHarv}`
-  const rijksUrl =   `https://www.rijksmuseum.nl/api/en/collection/?key=${apiKeyRijks}`
+  const rijksUrl = `https://www.rijksmuseum.nl/api/en/collection/?key=${apiKeyRijks}`
   
   const harvardResponse = await axios.get(harvardUrl)
   const rijksResponse = await axios.get(rijksUrl)
@@ -129,7 +133,7 @@ app.post('/queue', isLoggedIn, async(req, res) => {
   }
 })
   
-app.post('/queue/newspark', (req, res) => {
+app.post('/queue/newspark', isLoggedIn, (req, res) => {
   // db.sparkqueue.findOne({where: {
   //   id: req.sparkqueue.id}, include: [db.sparkqueue]
   //})
@@ -142,25 +146,35 @@ app.post('/queue/newspark', (req, res) => {
   res.redirect('newspark')
 })
 
-app.get('/queue/newspark', (req, res) => {
+app.get('/queue/newspark', isLoggedIn, (req, res) => {
   //const { title, artist, url } = req.body
-  res.render('newspark', //{ title, artist, url}
-  )
+
+  const colorsArray = []                                             
+   for (i = 0; i < 9; i++) { 
+    color = Math.floor(Math.random()*255) 
+    colorsArray.push(color)
+     console.log(color) 
+ } 
+  res.render('newspark', { colorsArray })
 })
 
 
 //Usues cloudinary for uploads
-app.get('/photoupload', (req, res) => {
+app.get('/photoupload', isLoggedIn, (req, res) => {
+  
   res.render('photoupload')
   //uploads photo. adds to flare model
 })
 
-// app.get('/queue', (req, res) => {
-//   res.render('queue'//, {}
-//   )
-// })
+app.post('/photouploads', upload.single('myFile'), function(req, res) {
+  res.send(req.file);
+});
 
-
+app.post('/photoupload', upload.single('myFile'), function(req, res) {
+  cloudinary.uploader.upload(req.file.path, function(result) {
+    res.send(result);
+  })
+})
 
 //Flare pages (user profiles)
 //displays title, artist, url, photo upload, user name,color1, color2, color3, flaretitle 
