@@ -75,6 +75,7 @@ input[type=submit] {
   margin-top: 25px;
   background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
   background-blend-mode:screen;
+  color: #183359;
 }
 
 .howtoP {
@@ -226,7 +227,7 @@ button {
   max-width: 400px;
 }
 
-.colorsFlare {
+.colorslare {
   display: block;
   position: relative;
   height: 50px;
