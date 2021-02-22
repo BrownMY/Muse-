@@ -197,8 +197,8 @@ app.put('/photoupload', upload.single('inputFile'), (req, res) => {
   })
 })
 
-//Flare pages (user profiles)
-//displays title, artist, url, photo upload, user name,color1, color2, color3, flaretitle 
+// Flare pages (user profiles)
+// displays title, artist, url, photo upload, user name,color1, color2, color3, flaretitle 
 app.get('/profile', isLoggedIn, (req, res) => {
   const { name, username } = req.user.get(); 
   res.render('profile', { name, username });

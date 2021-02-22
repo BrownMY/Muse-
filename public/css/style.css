@@ -184,5 +184,20 @@ button {
 
 }
 
+.uploadFlare {
+  margin-top: -20px;
+}
+
+.photoMain {
+  margin: 9 auto;
+  max-width: 600px;
+  flex-direction: column;
+  background-color: rgba(246, 241, 223, 0.60);
+  margin-top: 100px;
+  padding: 100px;
+  text-align: center;
+}
+
+
 
 
