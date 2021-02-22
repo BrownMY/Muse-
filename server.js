@@ -192,7 +192,7 @@ app.put('/photoupload', upload.single('inputFile'), (req, res) => {
       }).then(result => {
         const { name, username } = req.user.get();
         
-        res.render('profile', { image: imgResult.url, name, username })
+        res.redirect('/profile')
       })
   })
 })
@@ -200,9 +200,14 @@ app.put('/photoupload', upload.single('inputFile'), (req, res) => {
 // Flare pages (user profiles)
 // displays title, artist, url, photo upload, user name,color1, color2, color3, flaretitle 
 app.get('/profile', isLoggedIn, (req, res) => {
-  const { name, username } = req.user.get(); 
-  res.render('profile', { name, username });
+  db.user.findOne({where: {
+    id: req.user.id}, include: [db.sparkqueue]}).then(function(user){
+    const { name, username, imgResult } = req.user.get(); 
+    console.log(req.user.get)
+    res.render('profile', { images: user.sparkqueues, name, username })
+  }) 
 });
+
 
 const PORT = process.env.PORT || 3000;
 const server = app.listen(PORT, () => {
