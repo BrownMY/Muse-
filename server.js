@@ -6,7 +6,6 @@ const passport = require('./config/ppConfig'); //
 const flash = require('connect-flash');
 const axios = require('axios')
 const multer = require('multer');
-const upload = multer({ dest: './uploads/' });
 const cloudinary = require('cloudinary');
 
 const app = express();
@@ -18,6 +17,7 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const db = require('./models');
 
 // MIDDLEWARE
+const upload = multer({ dest: './uploads/' });
 app.use(require('morgan')('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(__dirname + '/public'));
@@ -58,6 +58,10 @@ app.get('/', (req, res) => {
   res.render('index')
   })
 
+  app.get('/muse-how-to', (req, res) => {
+    res.render('musehowto')
+  })
+
 
 //Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
 //Option for timer - save to queue or upload a finished 'flare'
@@ -90,7 +94,7 @@ app.get('/spark', isLoggedIn, async (req, res) => {
    for (i = 0; i < 9; i++) { 
     color = Math.floor(Math.random()*255) 
     colorsArray.push(color)
-     console.log(color) 
+     
  } 
 
   //NEEDS TIMER OPTION
@@ -115,6 +119,7 @@ app.post('/queue', isLoggedIn, async(req, res) => {
 
   try {
     const createQueue = await
+    
     db.sparkqueue.create({
       title: req.body.title,
       artist: req.body.artist,
@@ -173,13 +178,20 @@ app.get('/photoupload', isLoggedIn, (req, res) => {
   //uploads photo. adds to flare model
 })
 
-app.post('/photouploads', upload.single('myFile'), function(req, res) {
-  res.send(req.file);
-});
+// app.post('/photouploads', upload.single('myFile'), function(req, res) {
+//   res.send(req.file);
+// });
 
-app.post('/photoupload', upload.single('myFile'), function(req, res) {
-  cloudinary.uploader.upload(req.file.path, function(result) {
-    res.send(result);
+app.post('/photoupload', upload.single('inputFile'), (req, res) => {
+  const img = req.file.path
+  console.log(db.sparkqueue)
+  cloudinary.uploader.upload(img, (imgResult) => {
+    // SAVE CLUDINARY UPLOAD URL to uploadurl in flare database to current user.
+    db.flare.update({ where : {id: req.user.id},
+      uploadurl: imgResult.url
+      })
+    
+    res.render('profile', { image: imgResult.url })
   })
 })
 

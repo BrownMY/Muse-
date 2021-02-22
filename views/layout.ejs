@@ -5,11 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Muse - </title>
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
     
   </head>
   <body>
     <%- include('partials/alerts') %>
-    <header>
+    <header> 
+      <h1 class="name">MUSE</h1>
       <nav>
         <ul>
           <% if (!currentUser) {%>
@@ -22,7 +25,7 @@
         </ul>
       </nav>
     </header>
-    <h1>MUSE</h1>
+   
     <%- body %>
    
   </body>

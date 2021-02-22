@@ -1,0 +1,1 @@
+const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/doihe1pi6/upload'

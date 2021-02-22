@@ -2,8 +2,20 @@
 <p class="titleP"> Title: <%= keyObject[0].get().title %></p>
 <p class="artistP"> Artist: <%= keyObject[0].get().artist %></p>
 
-<% console.log( keyObject.colors) %>
+<% console.log(keyObject.colors) %>
 
 <div class="colors" style="background-color:rgb(<%= keyObject.colors[0] %>, <%= keyObject.colors[1] %>, <%= keyObject.colors[2] %>)"></div>
     <div class="colors" style="background-color:rgb(<%= keyObject.colors[3] %>, <%= keyObject.colors[4] %>, <%= keyObject.colors[5] %>)"></div>
     <div class="colors" style="background-color:rgb(<%= keyObject.colors[6] %>, <%= keyObject.colors[7] %>, <%= keyObject.colors[8] %>)"></div>
+
+<form method="GET" action="/photoupload">
+    <input type="hidden" name="title" value="<%= keyObject[0].get().title %>">
+    <input type="hidden" name="artist" value="<%= keyObject[0].get().artist %>">
+    <input type="hidden" name="url" value="<%= keyObject[0].get().url %>">
+    <input type="hidden" name="color1" value="<%= keyObject.colors[0] %>, <%= keyObject.colors[1] %>, <%= keyObject.colors[2] %>">
+    <input type="hidden" name="color2" value="<%= keyObject.colors[3] %>, <%= keyObject.colors[4] %>, <%= keyObject.colors[5] %>">
+    <input type="hidden" name="color3" value="<%= keyObject.colors[6] %>, <%= keyObject.colors[7] %>, <%= keyObject.colors[8] %>">
+    <input type="hidden" name="id" value="<%= currentUser.dataValues.id %>">
+
+    <button type="Submit">Save to Flare</button>
+</form>

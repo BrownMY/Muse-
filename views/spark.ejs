@@ -1,4 +1,4 @@
-<p>Spark</p>
+<h1 class="spark">Spark</h1>
 <main>
 <div class='SparkImg'>
 <% let title; %>
@@ -26,7 +26,6 @@
       <% } else { %>
 
         <% title = randomImg.title %>
-        <%console.log("This is the title:", title) %>
         <% artist = randomImg.principalOrFirstMaker %>
         <% url = randomImg.webImage.url %>
         <img src="<%= randomImg.webImage.url %>">

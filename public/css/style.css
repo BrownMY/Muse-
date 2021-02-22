@@ -1,34 +1,71 @@
 
 * {
-box-sizing: border-box;
-background-color: #d9cfa9; 
-position: relative;
-margin: 0 auto;
-text-align: center;
+  box-sizing: border-box;
+  /* position: relative; */
+  margin: 0 auto;
+  /* text-align: center; */
+  font-family: 'Raleway', sans-serif;
+}
+
+body {
+  background-color: #d9cfa9; 
+  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+  background-size: cover;
+  color:#2a4142;
 }
 
 main {
-  
   padding: 30px;
+  background-color: aliceblue;
 }
 
-h1 {
+.howto {
+  max-width: 900px;
+  padding: 20px;
+  background-color: #d9cfa9; 
+  border: 10px solid whitesmoke; 
+  margin-top: 25px;
+  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+  background-blend-mode:screen;
+}
+
+.howtoP {
+  padding: 15px;
+  font-size: 20px;
+}
+
+header {
+  background-image:  url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+  background-blend-mode: screen;
+  background-size: cover;
+  border-bottom: 2px solid #a3182d;
+  height: 120px;
+  text-align: center;
+}
+
+.name {
+  display: inline-block;
+  /* position: absolute;
+  left: 20px; */
+  font-size: 50px;
+  width: 100px;
+  color: #f2e9eb;  
+}
+
+.spark {
   display: block;
-  position: absolute;
+  position: relative;
   background-color: whitesmoke;
   width: 100px;
-  left: 20px;
+  left: auto;
   color: #f2e9eb;
 }
 
 a {
+  display: inline-flex;
+  right: 20px;
   color: #2a4142;
   text-decoration: none;
-}
-
-body {
-
-  color:#2a4142;
 }
 
 img {
@@ -37,18 +74,15 @@ img {
 }
 
 .artistP {
-
   z-index: 1;
   position: relative;
   top: -68px;
   left: auto;
   right: auto;
   background: none;
-
 }
 
 .titleP {
-
 z-index: 1;
 position: relative;
 top: -68px;
@@ -58,7 +92,6 @@ background: none;
 }
 
 .colors {
-
   position: relative;
   top: -100px;
   left: -300px;
@@ -66,20 +99,21 @@ background: none;
   width: 50px;
 }
 
-li {
-
+ul {
   display: inline-block;
   position: absolute;
+  text-decoration: none;
+  margin-right: -1000px;
+}
+
+li {
+  display: inline-block;
   margin: 10px;
   padding: 0px;
   text-decoration: none;
-  right: 40px;
-  
 }
 
 img {
-
   max-width: 800px;
   max-height: 700px;
-
 }
