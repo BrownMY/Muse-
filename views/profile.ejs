@@ -6,18 +6,19 @@
     
     <% console.log(sparkqueue.dataValues.color1) %>
 
-        <img src="<%= sparkqueue.dataValues.url %>">
+        <img id="flareImg" src="<%= sparkqueue.dataValues.url %>">
         <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
         <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
-        <% if(sparkqueue.dataValues.color1 !== null) { %>}
-            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color1 %>)"></div>
-            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color2 %>)"></div>
-            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color3 %>)"></div>
-        <% } %>
         <div id="userFlare">
         <p class="artistP">Flare Title: <%= sparkqueue.dataValues.flaretitle %></p>
-        <img src="<%= sparkqueue.dataValues.uploadurl %>">
+        <img id="flareupload" src="<%= sparkqueue.dataValues.uploadurl %>">
         </div>
+        <% if(sparkqueue.dataValues.color1 !== null) { %>
+            <div class="colorsFlare" style="background-color:rgb(<%= sparkqueue.dataValues.color1 %>)"></div>
+            <div class="colorsFlare" style="background-color:rgb(<%= sparkqueue.dataValues.color2 %>)"></div>
+            <div class="colorsFlare" style="background-color:rgb(<%= sparkqueue.dataValues.color3 %>)"></div>
+        <% } %>
+        
    
 <% }) %>
 </main>
