@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   sparkqueue.init({
     title: DataTypes.STRING,
     artist: DataTypes.STRING,
-    sparkurl: DataTypes.STRING,
+    url: DataTypes.STRING,
     color1: DataTypes.STRING,
     color2: DataTypes.STRING,
     color3: DataTypes.STRING,

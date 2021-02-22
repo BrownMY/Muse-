@@ -56,14 +56,12 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
-
   res.render('index')
-  })
+})
 
-  app.get('/muse-how-to', (req, res) => {
-    res.render('musehowto')
-  })
-
+app.get('/muse-how-to', (req, res) => {
+  res.render('musehowto')
+})
 
 //Spark Page - Displays random imgs from API, 3 randomized colors, and a word.
 //Option for timer - save to queue or upload a finished 'flare'
@@ -125,8 +123,7 @@ app.post('/queue', isLoggedIn, async(req, res) => {
     db.sparkqueue.create({
       title: req.body.title,
       artist: req.body.artist,
-      url: req.body.url,
-      
+      url: req.body.url
     })
 
     const user = await 
@@ -139,19 +136,6 @@ app.post('/queue', isLoggedIn, async(req, res) => {
     console.log(e)
   }
 })
-  
-// app.get('/queue/newspark/:id', isLoggedIn, (req, res) => {
-//   // db.sparkqueue.findOne({where: {
-//   //   id: req.sparkqueue.id}, include: [db.sparkqueue]
-//   //})
-//   //displays title
-//   //artist
-//   //url
-//   //3 new colors
-//   //on save button - saves art, title, url, user, color1, color2, color3
-//   //sends to photo upload,
-//   res.redirect('newspark')
-// })
 
 ///NEED PARAM ROUTE newspark/:id
 app.get('/queue/newspark/:id', isLoggedIn, async(req, res) => {
@@ -173,27 +157,43 @@ app.get('/queue/newspark/:id', isLoggedIn, async(req, res) => {
 })
 
 
-//Usues cloudinary for uploads
-app.get('/photoupload', isLoggedIn, (req, res) => {
-  
-  res.render('photoupload')
-  //uploads photo. adds to flare model
+
+app.put('/colorsToSparkqueue', async(req, res) => {
+ try {
+   const {color1, color2, color3, sparkqueueId} = req.body
+   const thisSpark = await db.sparkqueue.findOne({where: {id: sparkqueueId}})
+   await db.sparkqueue.update({ color1, color2, color3 }, {where: {id: sparkqueueId }})
+   res.render('photoupload', { thisSpark })
+ } catch(e) {
+   console.log(e.message)
+ }
 })
+
+
+//Usues cloudinary for uploads
+// app.get('/photoupload', isLoggedIn, (req, res) => {
+  
+//   res.render('photoupload')
+//   //uploads photo. adds to flare model
+// })
 
 // app.post('/photouploads', upload.single('myFile'), function(req, res) {
 //   res.send(req.file);
 // });
 
-app.post('/photoupload', upload.single('inputFile'), (req, res) => {
+app.put('/photoupload', upload.single('inputFile'), (req, res) => {
   const img = req.file.path
-  console.log(db.sparkqueue)
   cloudinary.uploader.upload(img, (imgResult) => {
     // SAVE CLUDINARY UPLOAD URL to uploadurl in flare database to current user.
-    db.flare.update({ where : {id: req.user.id},
-      uploadurl: imgResult.url
+    db.sparkqueue.update({
+      uploadurl: imgResult.url,
+      flaretitle: req.body.flaretitle},
+      {where: { id: req.body.id },
+      }).then(result => {
+        const { name, username } = req.user.get();
+        
+        res.render('profile', { image: imgResult.url, name, username })
       })
-    
-    res.render('profile', { image: imgResult.url })
   })
 })
 

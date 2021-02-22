@@ -12,10 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      models.user.belongsToMany(models.sparkqueue, {through: 'usersSparkQueues'})
-      models.user.hasMany(models.flare)
-    
-      
+      models.user.belongsToMany(models.sparkqueue, {through: 'usersSparkQueues'}) 
     }
   };
   user.init({
