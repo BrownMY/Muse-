@@ -13,6 +13,44 @@ body {
   color:#2a4142;
 }
 
+.loginMain {
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(246, 241, 223, 0.60);
+  margin-top: 100px;
+  padding: 100px;
+  text-align: right; 
+}
+
+.signupMain {
+  display: flex;
+  max-width: 600px;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(246, 241, 223, 0.60);
+  margin-top: 100px;
+  padding: 100px;
+  text-align: right; 
+}
+
+input {
+  border: none;
+  font-size: 25px;
+  margin: 10px;
+}
+
+input[type=submit] {
+  border: none;
+  font-size: 20px;
+  margin-top: 30px;
+  background-color: #ad4c1c;
+  padding: 10px;
+  color: #f7f6f0;
+  margin: auto;
+}
+
 .mainspark {
   padding: 30px;
   text-align: center;
@@ -136,3 +174,10 @@ button {
   background-color: rgba(246, 241, 223, 0.60); 
   margin-top: 25px;
 }
+
+.flareMain {
+
+}
+
+
+
