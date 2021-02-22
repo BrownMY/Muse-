@@ -32,11 +32,6 @@
         <p class="titleP">Title: <%=randomImg.title %></p>
         
       <% } %>
-      
-      <div class="colors" id="colors1" style="background-color:rgb(<%= colorsArray[0] %>, <%= colorsArray[1] %>, <%= colorsArray[2] %>)"></div>
-      <div class="colors" id="colors2" style="background-color:rgb(<%= colorsArray[3] %>, <%= colorsArray[4] %>, <%= colorsArray[5] %>)"></div>
-      <div class="colors" id="colors3" style="background-color:rgb(<%= colorsArray[6] %>, <%= colorsArray[7] %>, <%= colorsArray[8] %>)"></div>
-    
    
     <form method="POST"  action="/queue">
         <input type="hidden" name="title" value="<%= title %>">
