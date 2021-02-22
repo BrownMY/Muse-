@@ -1,5 +1,5 @@
-
-<p><%= name %>'s Flare</p>
+<main class="profileMain">
+<p class="userFlareName"><%= name %>'s Flare</p>
 
 <% images.forEach(function(sparkqueue){ %>
     <% console.log(`*********************************`) %>
@@ -14,12 +14,13 @@
             <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color2 %>)"></div>
             <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color3 %>)"></div>
         <% } %>
+        <div id="userFlare">
         <p class="artistP">Flare Title: <%= sparkqueue.dataValues.flaretitle %></p>
         <img src="<%= sparkqueue.dataValues.uploadurl %>">
-        
+        </div>
    
 <% }) %>
-
+</main>
 <img src="<%= images %>">
 
 
