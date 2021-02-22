@@ -140,6 +140,7 @@ right: auto;
   position: absolute;
   padding: 10px;
 }
+
 .colors {
   display: inline-block;
   position: relative;
@@ -204,10 +205,6 @@ button {
   background-size: cover;
 }
 
-#userFlare {
-  display: block;
-}
-
 .userFlareName {
   color: whitesmoke;
   background-color: rgba(171, 76, 28, 0.61);
@@ -216,7 +213,26 @@ button {
   border-bottom: 2px solid #a3182d;
 }
 
+#userFlare {
+  display: inline-block;
+  max-width: 800px;
+}
 
+#flareupload {
+  max-width: 400px;
+}
+
+#flareImg {
+  max-width: 400px;
+}
+
+.colorsFlare {
+  display: block;
+  position: relative;
+  height: 50px;
+  width: 250px;
+  margin-top: -35px;
+}
 
 
 
