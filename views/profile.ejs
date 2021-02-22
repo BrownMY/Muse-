@@ -2,14 +2,18 @@
 <p><%= name %>'s Flare</p>
 
 <% images.forEach(function(sparkqueue){ %>
-    <% console.log(sparkqueue) %>
+    <% console.log(`*********************************`) %>
+    
+    <% console.log(sparkqueue.dataValues.color1) %>
 
         <img src="<%= sparkqueue.dataValues.url %>">
         <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
         <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
-        <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues[0] %>, <%= sparkqueue.dataValues[1] %>, <%= sparkqueue.dataValues[2] %>)"></div>
-        <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues[0] %>, <%= sparkqueue.dataValues[1] %>, <%= sparkqueue.dataValues[2] %>)"></div>
-        <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues[0] %>, <%= sparkqueue.dataValues[1] %>, <%= sparkqueue.dataValues[2] %>)"></div>
+        <% if(sparkqueue.dataValues.color1 !== null) { %>}
+            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color1 %>)"></div>
+            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color2 %>)"></div>
+            <div class="colors" style="background-color:rgb(<%= sparkqueue.dataValues.color3 %>)"></div>
+        <% } %>
         <p class="artistP">Flare Title: <%= sparkqueue.dataValues.flaretitle %></p>
         <img src="<%= sparkqueue.dataValues.uploadurl %>">
         
