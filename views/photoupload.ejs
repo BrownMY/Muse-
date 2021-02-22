@@ -1,8 +1,11 @@
 <p>Upload Flare </p>
 
 
-<form action="/photoupload" method="POST" enctype="multipart/form-data">
+<form action="/photoupload/?_method=PUT" method="POST" enctype="multipart/form-data">
     <label for="inputFile">Image</label>
     <input type="file" name="inputFile">
+    <label for="flaretitle">Title of Piece:</label>
+    <input type="text" name="flaretitle"> 
+    <input type="hidden" name="id" value="<%= thisSpark.id %>">
     <button type="submit" class="btn btn-primary">Upload Image</button>
 </form>
