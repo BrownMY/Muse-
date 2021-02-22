@@ -143,13 +143,13 @@ app.get('/queue/newspark/:id', isLoggedIn, async(req, res) => {
     const numId = req.params.id 
     let keyObject = await db.sparkqueue.findAll({where: {id: numId}})
     
-    // const colorsArray =[]                                             
-    // for (i = 0; i < 9; i++) { 
-    // let color = Math.floor(Math.random()*255) 
-    // colorsArray.push(color)
-    // }
-    // keyObject.colors = colorsArray
-    //console.log(keyObject[0].get().url)
+    const colorsArray =[]                                             
+    for (i = 0; i < 9; i++) { 
+    let color = Math.floor(Math.random()*255) 
+    colorsArray.push(color)
+    }
+    keyObject.colors = colorsArray
+    console.log(keyObject[0].get().url)
     res.render(`newspark/idx`, { keyObject })
   } catch(e) {
     console.log(e)
