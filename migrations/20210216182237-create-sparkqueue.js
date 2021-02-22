@@ -20,6 +20,21 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      color1: {
+        type: Sequelize.STRING
+      },
+      color2: {
+        type: Sequelize.STRING
+      },
+      color3: {
+        type: Sequelize.STRING
+      },
+      flaretitle: {
+        type: Sequelize.STRING
+      },
+      uploadurl: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
