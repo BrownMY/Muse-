@@ -1,16 +1,20 @@
-<% sparkQueueResponse.forEach(function(sparkqueue){ %>
-    <% if (sparkqueue.dataValues.url !== '') { %>
-        <img src="<%= sparkqueue.dataValues.url %>">
-        <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
-        <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
-    <% } %>
- 
+<main class="queueMain">
+    
+    <% sparkQueueResponse.forEach(function(sparkqueue){ %>
+        <% if (sparkqueue.dataValues.url !== '') { %>
+            <img src="<%= sparkqueue.dataValues.url %>">
+            <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
+            <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
+        <% } %>
+    
 
- <div class='SparkAdd'>
-    <form method="GET"  action="/queue/newspark/<%= sparkqueue.dataValues.id %>">
+    <div class='sparkAdd'>
+        <form method="GET"  action="/queue/newspark/<%= sparkqueue.dataValues.id %>">
+            
         
-       
-    <button type="Submit">Spark</button>
-    </form>
-</div>
- <% }) %>
+        <button type="Submit">Spark</button>
+        </form>
+    </div>
+    <% }) %>
+    
+</main>
