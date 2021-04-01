@@ -10,6 +10,7 @@
 body {
   background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
   background-size: cover;
+  background-position: fixed;
   color:#f7f6f0;
 }
 
@@ -62,7 +63,7 @@ input[type=submit] {
 }
 
 .sparkImg {
-    background-color:rgba(171, 76, 28, 0.61);
+    background-color:rgba(171, 76, 28, 0.41);
     max-width: 1000px;
 }
 
@@ -86,6 +87,15 @@ input[type=submit] {
 .howtoH {
   text-decoration: underline;
 }
+
+.start {
+  color: #183359;
+  margin: 0 auto;
+  width: 70px;
+  padding: 4px;
+  border: 1px solid #183359;
+}
+
 header {
   background-image:  url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
   background-blend-mode: screen;
@@ -218,6 +228,8 @@ button {
   display: inline-block;
   max-width: 800px;
 }
+
+
 
 #flareupload {
   max-width: 400px;
