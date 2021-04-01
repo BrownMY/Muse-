@@ -6,6 +6,7 @@
     
     <% console.log(sparkqueue.dataValues.color1) %>
 
+    <div class='profileView'>
         <img id="flareImg" src="<%= sparkqueue.dataValues.url %>">
         <p class="titleP">Title: <%= sparkqueue.dataValues.title%></p>
         <p class="artistP">Artist: <%= sparkqueue.dataValues.artist %></p>
@@ -18,8 +19,7 @@
             <div class="colorsFlare" style="background-color:rgb(<%= sparkqueue.dataValues.color2 %>)"></div>
             <div class="colorsFlare" style="background-color:rgb(<%= sparkqueue.dataValues.color3 %>)"></div>
         <% } %>
-        
-   
+    </div>
 <% }) %>
 </main>
 <img src="<%= images %>">
