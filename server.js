@@ -56,8 +56,8 @@ app.use('/auth', require('./controllers/auth'));
 
 //Homepage - Login - SignUp - Begin (Without account)
 app.get('/', (req, res) => {
-  res.render('index')
-})
+  res.render('homepage', { layout: 'homepage'})
+});
 
 app.get('/muse-how-to', (req, res) => {
   res.render('musehowto')

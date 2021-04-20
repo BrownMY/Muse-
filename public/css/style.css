@@ -14,6 +14,25 @@ body {
   color:#f7f6f0;
 }
 
+          /* HOMEPAGE */
+
+.homepage-name {
+  font-size: 80px;
+  text-align: center;
+}
+
+.homepage-nav {
+  text-align: center;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #d9cfa9; 
+  border: 10px solid whitesmoke; 
+  margin-top: 25px;
+  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+  background-blend-mode:screen;
+  color: #183359;;
+}
+
 .loginMain {
   display: flex;
   max-width: 600px;
