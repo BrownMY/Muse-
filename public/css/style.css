@@ -1,36 +1,55 @@
-
 * {
   box-sizing: border-box;
   /* position: relative; */
   margin: 0 auto;
   /* text-align: center; */
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
 }
 
 body {
-  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+  background-image: url("https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg");
   background-size: cover;
   background-position: fixed;
-  color:#f7f6f0;
+  color: #f7f6f0;
 }
 
-          /* HOMEPAGE */
+/* HOMEPAGE */
 
 .homepage-name {
+  position: absolute;
   font-size: 80px;
-  text-align: center;
+  left: 15px;
 }
 
 .homepage-nav {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #d9cfa9;
+  border-bottom: 2px solid rgb(249, 250, 199);
+  background-color: #883226;
+  color: rgb(249, 250, 199);
+}
+
+.homepage-ul {
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+}
+
+li {
+  color: rgb(249, 250, 199);
+} 
+
+.homepage-about {
+  color:  rgb(253, 253, 214);
+  font-size: 17px;
+  max-width: 600px;
+  background-color: rgba(171, 76, 28, 0.61);
+  margin-top: 100px;
+  padding: 100px;
   text-align: center;
-  max-width: 1200px;
-  padding: 20px;
-  background-color: #d9cfa9; 
-  border: 10px solid whitesmoke; 
-  margin-top: 25px;
-  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
-  background-blend-mode:screen;
-  color: #183359;;
 }
 
 .loginMain {
@@ -41,7 +60,7 @@ body {
   background-color: rgba(171, 76, 28, 0.61);
   margin-top: 100px;
   padding: 100px;
-  text-align: right; 
+  text-align: right;
 }
 
 .signupMain {
@@ -52,10 +71,10 @@ body {
   background-color: rgba(171, 76, 28, 0.61);
   margin-top: 100px;
   padding: 100px;
-  text-align: right; 
+  text-align: right;
 }
 
-.flash{
+.flash {
   background-color: white;
 }
 
@@ -65,7 +84,7 @@ input {
   margin: 10px;
 }
 
-input[type=submit] {
+input[type="submit"] {
   border: none;
   font-size: 20px;
   margin-top: 30px;
@@ -76,25 +95,24 @@ input[type=submit] {
 }
 
 .mainspark {
-  
   padding: 30px;
   text-align: center;
 }
 
 .sparkImg {
-    background-color:rgba(171, 76, 28, 0.41);
-    max-width: 1000px;
+  background-color: rgba(171, 76, 28, 0.41);
+  max-width: 1000px;
 }
 
 .howto {
   text-align: center;
   max-width: 900px;
   padding: 20px;
-  background-color: #d9cfa9; 
-  border: 10px solid whitesmoke; 
+  background-color: #d9cfa9;
+  border: 10px solid whitesmoke;
   margin-top: 25px;
-  background-image: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
-  background-blend-mode:screen;
+  background-image: url("https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg");
+  background-blend-mode: screen;
   color: #183359;
 }
 
@@ -115,30 +133,34 @@ input[type=submit] {
   border: 1px solid #183359;
 }
 
-header {
-  background-image:  url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg');
+/* header {
+  background-image: url("https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg");
   background-blend-mode: screen;
   background-size: cover;
   border-bottom: 2px solid #a3182d;
   height: 120px;
   text-align: center;
-}
+} */
 
 .name {
   display: inline-block;
   margin-top: 10px;
   font-size: 60px;
   width: 100px;
-  color: #f2e9eb;  
-  letter-spacing: .5em;
+  color: #f2e9eb;
+  letter-spacing: 0.5em;
 }
-
 
 a {
   display: inline-flex;
   right: 20px;
-  color: #f5f3eb;
+  color: rgb(253, 253, 219);
+  font-family: "Raleway", sans-serif;
   text-decoration: none;
+}
+
+a:hover {
+  color: #f5c66f;
 }
 
 img {
@@ -155,15 +177,14 @@ img {
   top: -68px;
   left: auto;
   right: auto;
-
 }
 
 .titleP {
-z-index: 1;
-position: relative;
-top: -68px;
-left: auto;
-right: auto;
+  z-index: 1;
+  position: relative;
+  top: -68px;
+  left: auto;
+  right: auto;
 }
 
 #colors1 #colors2 #colors3 {
@@ -183,7 +204,7 @@ li {
   display: inline-block;
   margin: 10px;
   padding: 0px;
-  text-decoration: none; 
+  text-decoration: none;
 }
 button {
   padding: 10px;
@@ -199,7 +220,8 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg') repeat center center fixed;
+  background: url("https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg")
+    repeat center center fixed;
   background-size: cover;
 }
 
@@ -207,12 +229,11 @@ button {
   text-align: center;
   max-width: 900px;
   padding: 20px;
-  background-color:rgba(171, 76, 28, 0.61); 
+  background-color: rgba(171, 76, 28, 0.61);
   margin-top: 25px;
 }
 
 .flareMain {
-
 }
 
 .uploadFlare {
@@ -231,7 +252,8 @@ button {
 
 .profileMain {
   text-align: center;
-  background: url('https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg') repeat center center fixed;
+  background: url("https://cdn.pixabay.com/photo/2018/05/12/18/41/villa-farnesina-3394269_960_720.jpg")
+    repeat center center fixed;
   background-size: cover;
 }
 
@@ -248,8 +270,6 @@ button {
   max-width: 800px;
 }
 
-
-
 #flareupload {
   max-width: 400px;
 }
@@ -265,6 +285,3 @@ button {
   width: 250px;
   margin-top: -35px;
 }
-
-
-
