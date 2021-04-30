@@ -15,9 +15,9 @@
 <body>
   <%- include('partials/alerts') %>
   <header>
-    <h1 class="name">MUSE</h1>
-    <nav>
-      <ul>
+    <nav class="homepage-nav">
+    <a href="/"><h1 class="homepage-name">MUSE</h1></a>
+    <h1 class="homepage-ul">
         <% if (!currentUser) {%>
           <li><a href="/auth/signup">Signup</a></li>
           <li><a href="/auth/login">Login</a></li>
